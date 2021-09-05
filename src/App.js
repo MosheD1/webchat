@@ -5,11 +5,10 @@ import './App.css';
 
 function App() {
   const [currentChat, setCurrentChat] = useState('');
-  const [view, setView] = useState('');
   const [messages, setMessages] = useState([]);
 
   useEffect(() => {
-    fetch(`localhost:3000/messages/${currentChat.id}`)
+    fetch(`localhost:3001/messages/${currentChat.id}`)
     .then(data => data.json())
     .then(messages => setMessages(messages))
   }, [currentChat]);
