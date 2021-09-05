@@ -1,23 +1,25 @@
-import logo from './logo.svg';
+import React, {useState, useEffect } from 'react';
+import Chat from './Components/Chat/Chat';
+import ChatList from './Components/Chat-List/ChatList';
 import './App.css';
 
 function App() {
+  const [currentChat, setCurrentChat] = useState('');
+  const [view, setView] = useState('');
+  const [messages, setMessages] = useState([]);
+
+  useEffect(() => {
+    fetch(`localhost:3000/messages/${currentChat.id}`)
+    .then(data => data.json())
+    .then(messages => setMessages(messages))
+  }, [currentChat]);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className='chatApp'>
+        <Chat currentChat={currentChat} messages={messages}></Chat>
+        <ChatList setCurrentChat={setCurrentChat}></ChatList>
+      </div>
     </div>
   );
 }

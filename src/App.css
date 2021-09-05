@@ -1,0 +1,11 @@
+.App {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.chatApp {
+  width: 65vw;
+  height: 90vh;
+  display: flex;
+}
